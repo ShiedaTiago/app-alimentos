@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "673418093569",
+    "project_id": "gestao-alimento",
+    "storage_bucket": "gestao-alimento.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673418093569:android:5a25fa488a473249554c00",
+        "android_client_info": {
+          "package_name": "com.tiagotorres.gestao_alimentos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa9N9zz6IMcXIx6_hvJJ6PyKNPA3NXrmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
