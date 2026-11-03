@@ -7,6 +7,7 @@ import '../screens/auth/forgot_password_screen.dart';
 import '../screens/auth/login_screen.dart';
 import '../screens/auth/register_screen.dart';
 import '../screens/auth/splash_screen.dart';
+import '../screens/debug/rfid_simulator_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/household/household_screen.dart';
 import '../screens/household/household_setup_screen.dart';
@@ -66,6 +67,10 @@ GoRouter createRouter(AuthProvider auth, HouseholdProvider household) {
       GoRoute(path: '/household', builder: (_, _) => const HouseholdScreen()),
       GoRoute(path: '/items/new', builder: (_, _) => const ItemFormScreen()),
       GoRoute(path: '/scanner', builder: (_, _) => const BarcodeScanScreen()),
+      GoRoute(
+        path: '/debug/rfid',
+        builder: (_, _) => const RfidSimulatorScreen(),
+      ),
       GoRoute(
         path: '/items/:id/edit',
         builder: (_, state) =>

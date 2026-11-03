@@ -15,3 +15,7 @@ int daysUntil(DateTime date, {DateTime? today}) {
 
 /// Formata como dd/MM/aaaa.
 String formatDate(DateTime date) => DateFormat('dd/MM/yyyy').format(date);
+
+/// Formata como dd/MM/aaaa HH:mm:ss (leituras do simulador RFID).
+String formatDateTime(DateTime date) =>
+    DateFormat('dd/MM/yyyy HH:mm:ss').format(date);

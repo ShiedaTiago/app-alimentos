@@ -65,7 +65,7 @@ inviteCodes/{code}
 Consulta principal: `items where status == 'active' orderBy expiresAt` → pode exigir **índice composto** (o Firestore mostra o link para criar no erro do console).
 
 ## households/{id}/tags/{tagId}  [F]
-`tagId` = EPC da etiqueta. Campos: `status` (`pending` \| `linked`), `itemId?`, `storageId`, `firstSeenAt`, `lastSeenAt`. Uma tag `pending` é o que o app mostra como "nova etiqueta detectada".
+`tagId` = EPC da etiqueta. Campos: `status` (`pending` \| `linked`), `itemId?`, `storageId`, `firstSeenAt`, `lastSeenAt`. Uma tag `pending` é o que o app mostra como "nova etiqueta detectada". Já usada pelo simulador RFID (RF25): ele escreve aqui como o ESP32 fará; o vínculo grava `tags.itemId` e `items.tagId` no mesmo batch. As regras atuais (`{sub=**}` para membros) já cobrem esta coleção.
 
 ## households/{id}/readings/{readingId}  [F]
 `storageId`, `temperature` (°C), `humidity` (%), `readAt`.

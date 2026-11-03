@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/auth_provider.dart';
@@ -19,6 +20,12 @@ class ProfileScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.email),
               title: Text(user?.email ?? ''),
+            ),
+            ListTile(
+              leading: const Icon(Icons.sensors),
+              title: const Text('Simulador RFID'),
+              subtitle: const Text('Debug: demonstração do TCC'),
+              onTap: () => context.push('/debug/rfid'),
             ),
             const SizedBox(height: 24),
             OutlinedButton.icon(

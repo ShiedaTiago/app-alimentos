@@ -7,6 +7,7 @@ import 'providers/auth_provider.dart';
 import 'providers/household_provider.dart';
 import 'providers/item_provider.dart';
 import 'providers/recipe_provider.dart';
+import 'providers/tag_provider.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
     required this.householdProvider,
     required this.itemProvider,
     required this.recipeProvider,
+    required this.tagProvider,
     required this.router,
   });
 
@@ -22,6 +24,7 @@ class App extends StatelessWidget {
   final HouseholdProvider householdProvider;
   final ItemProvider itemProvider;
   final RecipeProvider recipeProvider;
+  final TagProvider tagProvider;
   final GoRouter router;
 
   @override
@@ -32,6 +35,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider.value(value: householdProvider),
         ChangeNotifierProvider.value(value: itemProvider),
         ChangeNotifierProvider.value(value: recipeProvider),
+        ChangeNotifierProvider.value(value: tagProvider),
       ],
       child: MaterialApp.router(
         title: 'Gestão de Alimentos',

@@ -10,10 +10,12 @@ import 'providers/household_provider.dart';
 import 'providers/item_provider.dart';
 import 'providers/notification_provider.dart';
 import 'providers/recipe_provider.dart';
+import 'providers/tag_provider.dart';
 import 'services/auth_service.dart';
 import 'services/household_service.dart';
 import 'services/item_service.dart';
 import 'services/notification_service.dart';
+import 'services/tag_service.dart';
 import 'services/user_service.dart';
 
 Future<void> main() async {
@@ -37,6 +39,7 @@ Future<void> main() async {
       householdProvider: householdProvider,
       itemProvider: itemProvider,
       recipeProvider: RecipeProvider(itemProvider),
+      tagProvider: TagProvider(TagService(), householdProvider),
       router: createRouter(authProvider, householdProvider),
     ),
   );

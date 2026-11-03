@@ -42,7 +42,7 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [x] [D] Leitor de código de barras + Open Food Facts
 - [x] [D] Validade sugerida (RN05) e autocompletar pelo histórico
 - [x] [D] Notificação local diária
-- [ ] [D] Simulador RFID (tela debug) — bom para mostrar a visão do TCC
+- [x] [D] Simulador RFID (tela debug) — bom para mostrar a visão do TCC
 
 ## Fase 6 — Entrega (21–23/11)
 - [ ] `flutter analyze` limpo, `flutter test` passando

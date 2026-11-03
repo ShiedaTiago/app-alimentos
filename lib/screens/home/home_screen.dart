@@ -7,6 +7,7 @@ import '../../core/utils/item_summary.dart';
 import '../../models/food_item.dart';
 import '../../providers/household_provider.dart';
 import '../../providers/item_provider.dart';
+import '../../providers/tag_provider.dart';
 import '../../widgets/error_text.dart';
 import '../../widgets/expiry_badge.dart';
 
@@ -28,6 +29,7 @@ class HomeScreen extends StatelessWidget {
       body = ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          const _PendingTagsCard(),
           _SummaryRow(summary: summarizeItems(provider.items)),
           const SizedBox(height: 24),
           Text(
@@ -57,6 +59,34 @@ class HomeScreen extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       body: body,
+    );
+  }
+}
+
+/// Aviso de etiqueta RFID nova (status `pending`) esperando vínculo.
+/// Some sozinho quando não há etiquetas pendentes.
+class _PendingTagsCard extends StatelessWidget {
+  const _PendingTagsCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final count = context.watch<TagProvider>().pendingTags.length;
+    if (count == 0) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Card(
+        color: Theme.of(context).colorScheme.tertiaryContainer,
+        child: ListTile(
+          leading: const Icon(Icons.sensors),
+          title: Text(
+            count == 1
+                ? 'Nova etiqueta detectada'
+                : '$count etiquetas novas detectadas',
+          ),
+          subtitle: const Text('Toque para vincular a um alimento.'),
+          onTap: () => context.push('/debug/rfid'),
+        ),
+      ),
     );
   }
 }
