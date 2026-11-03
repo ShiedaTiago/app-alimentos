@@ -4,18 +4,18 @@ Regra de ouro: **cada fase termina com o app rodando** no emulador/celular e um 
 Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem.
 
 ## Fase 0 — Ambiente (02–03/11)
-- [ ] Seguir `SETUP.md`: Flutter, Android Studio, emulador, Git, Node, Firebase CLI, FlutterFire CLI
-- [ ] `flutter create` com o package name definido
-- [ ] Projeto Firebase criado, `flutterfire configure` rodado, SHA-1 de debug cadastrado
-- [ ] App padrão rodando com `Firebase.initializeApp` sem erro
-- [ ] Pastas de `ARQUITETURA.md` criadas, pacotes base no `pubspec.yaml`
+- [x] Seguir `SETUP.md`: Flutter, Android Studio, emulador, Git, Node, Firebase CLI, FlutterFire CLI
+- [x] `flutter create` com o package name definido
+- [x] Projeto Firebase criado, `flutterfire configure` rodado, SHA-1 de debug cadastrado
+- [x] App padrão rodando com `Firebase.initializeApp` sem erro
+- [x] Pastas de `ARQUITETURA.md` criadas, pacotes base no `pubspec.yaml`
 
 ## Fase 1 — Autenticação (04–07/11)  ⭐ exigência da professora
-- [ ] `validators.dart` + testes
-- [ ] Telas: login, cadastro, esqueci a senha (com validação de formulário)
-- [ ] `AuthService` com e-mail/senha e tradução de erros para pt-BR
+- [x] `validators.dart` + testes
+- [x] Telas: login, cadastro, esqueci a senha (com validação de formulário)
+- [x] `AuthService` com e-mail/senha e tradução de erros para pt-BR
 - [ ] Login com Google (cria `users/{uid}` no primeiro acesso)
-- [ ] `go_router` com redirect por estado de login; sessão persistente; logout
+- [x] `go_router` com redirect por estado de login; sessão persistente; logout
 - [ ] [D] Verificação de e-mail
 
 ## Fase 2 — Casa (08–10/11)
@@ -26,7 +26,7 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [ ] `firestore.rules` publicadas e testadas no Rules Playground
 
 ## Fase 3 — Alimentos (11–15/11)  ⭐ exigência da professora
-- [ ] Model `FoodItem` + enums + `expiry.dart` com testes (RN01)
+- [x] Model `FoodItem` + enums + `expiry.dart` com testes (RN01)
 - [ ] `ItemService` (stream de ativos, criar, editar, excluir, consumir/descartar)
 - [ ] Formulário com validação e date picker pt-BR
 - [ ] Lista ordenada por validade com `ExpiryBadge`, filtros por local/status, busca
@@ -34,8 +34,8 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [ ] Bottom navigation (Início · Alimentos · Receitas · Perfil)
 
 ## Fase 4 — Receitas (16–18/11)
-- [ ] `assets/recipes.json` com ~20 receitas
-- [ ] `RecipeService.suggest(items)` + testes
+- [x] `assets/recipes.json` com ~20 receitas
+- [x] `RecipeService.suggest(items)` + testes
 - [ ] Lista de sugestões (tem / falta) e detalhe
 
 ## Fase 5 — Extras (19–20/11)  — só se as fases 1–4 estiverem prontas

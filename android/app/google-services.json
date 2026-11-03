@@ -12,7 +12,20 @@
           "package_name": "com.tiagotorres.gestao_alimentos"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "673418093569-d93hv6kj7fte8ie54lq2n6nmidg3rjb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tiagotorres.gestao_alimentos",
+            "certificate_hash": "28ad25c0092875f925020d1ddbc3661b6e9cb375"
+          }
+        },
+        {
+          "client_id": "673418093569-isigvt31g8knvrak18terd6h3s5agjj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBa9N9zz6IMcXIx6_hvJJ6PyKNPA3NXrmg"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673418093569-isigvt31g8knvrak18terd6h3s5agjj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

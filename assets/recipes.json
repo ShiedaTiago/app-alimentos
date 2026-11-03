@@ -1,0 +1,740 @@
+[
+  {
+    "id": "omelete-legumes",
+    "title": "Omelete de legumes",
+    "minutes": 15,
+    "ingredients": [
+      {
+        "name": "ovo",
+        "keywords": [
+          "ovo",
+          "ovos"
+        ],
+        "optional": false
+      },
+      {
+        "name": "tomate",
+        "keywords": [
+          "tomate"
+        ],
+        "optional": true
+      },
+      {
+        "name": "cebola",
+        "keywords": [
+          "cebola"
+        ],
+        "optional": true
+      },
+      {
+        "name": "queijo",
+        "keywords": [
+          "queijo"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Bata os ovos com uma pitada de sal.",
+      "Pique o tomate e a cebola em cubinhos.",
+      "Refogue os legumes em uma frigideira untada por 2 minutos.",
+      "Despeje os ovos, adicione o queijo e cozinhe até firmar, dobrando ao meio."
+    ]
+  },
+  {
+    "id": "arroz-feijao",
+    "title": "Arroz com feijão",
+    "minutes": 40,
+    "ingredients": [
+      {
+        "name": "arroz",
+        "keywords": [
+          "arroz"
+        ],
+        "optional": false
+      },
+      {
+        "name": "feijão",
+        "keywords": [
+          "feijao"
+        ],
+        "optional": false
+      },
+      {
+        "name": "alho",
+        "keywords": [
+          "alho"
+        ],
+        "optional": true
+      },
+      {
+        "name": "cebola",
+        "keywords": [
+          "cebola"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Refogue o alho e a cebola em um fio de óleo.",
+      "Junte o arroz lavado e refogue por 1 minuto.",
+      "Cubra com água e cozinhe até secar.",
+      "Aqueça o feijão cozido com tempero e sirva junto."
+    ]
+  },
+  {
+    "id": "macarrao-alho-oleo",
+    "title": "Macarrão alho e óleo",
+    "minutes": 20,
+    "ingredients": [
+      {
+        "name": "macarrão",
+        "keywords": [
+          "macarrao",
+          "espaguete",
+          "penne"
+        ],
+        "optional": false
+      },
+      {
+        "name": "alho",
+        "keywords": [
+          "alho"
+        ],
+        "optional": false
+      }
+    ],
+    "steps": [
+      "Cozinhe o macarrão em água fervente com sal.",
+      "Doure o alho fatiado no azeite em fogo baixo.",
+      "Escorra o macarrão e misture ao alho.",
+      "Finalize com pimenta e salsinha, se tiver."
+    ]
+  },
+  {
+    "id": "frango-grelhado-legumes",
+    "title": "Frango grelhado com legumes",
+    "minutes": 30,
+    "ingredients": [
+      {
+        "name": "frango",
+        "keywords": [
+          "frango"
+        ],
+        "optional": false
+      },
+      {
+        "name": "cenoura",
+        "keywords": [
+          "cenoura"
+        ],
+        "optional": true
+      },
+      {
+        "name": "brócolis",
+        "keywords": [
+          "brocolis"
+        ],
+        "optional": true
+      },
+      {
+        "name": "limão",
+        "keywords": [
+          "limao"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Tempere o frango com sal, alho e limão.",
+      "Grelhe em frigideira quente até dourar dos dois lados.",
+      "Cozinhe os legumes no vapor por 5 minutos.",
+      "Sirva o frango com os legumes."
+    ]
+  },
+  {
+    "id": "sopa-legumes",
+    "title": "Sopa de legumes",
+    "minutes": 35,
+    "ingredients": [
+      {
+        "name": "batata",
+        "keywords": [
+          "batata"
+        ],
+        "optional": false
+      },
+      {
+        "name": "cenoura",
+        "keywords": [
+          "cenoura"
+        ],
+        "optional": false
+      },
+      {
+        "name": "abobrinha",
+        "keywords": [
+          "abobrinha"
+        ],
+        "optional": true
+      },
+      {
+        "name": "cebola",
+        "keywords": [
+          "cebola"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Descasque e corte os legumes em cubos.",
+      "Refogue a cebola, junte os legumes e cubra com água.",
+      "Cozinhe até ficarem macios, cerca de 20 minutos.",
+      "Acerte o sal e sirva quente, inteira ou batida."
+    ]
+  },
+  {
+    "id": "salada-tomate-alface",
+    "title": "Salada de alface e tomate",
+    "minutes": 10,
+    "ingredients": [
+      {
+        "name": "alface",
+        "keywords": [
+          "alface"
+        ],
+        "optional": false
+      },
+      {
+        "name": "tomate",
+        "keywords": [
+          "tomate"
+        ],
+        "optional": false
+      },
+      {
+        "name": "queijo",
+        "keywords": [
+          "queijo"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Lave e rasgue a alface.",
+      "Corte o tomate em fatias ou cubos.",
+      "Misture, adicione o queijo em cubos e tempere com azeite e sal."
+    ]
+  },
+  {
+    "id": "panqueca-simples",
+    "title": "Panqueca simples",
+    "minutes": 25,
+    "ingredients": [
+      {
+        "name": "leite",
+        "keywords": [
+          "leite"
+        ],
+        "optional": false
+      },
+      {
+        "name": "ovo",
+        "keywords": [
+          "ovo",
+          "ovos"
+        ],
+        "optional": false
+      },
+      {
+        "name": "farinha",
+        "keywords": [
+          "farinha"
+        ],
+        "optional": false
+      }
+    ],
+    "steps": [
+      "Bata no liquidificador o leite, os ovos, a farinha e uma pitada de sal.",
+      "Aqueça uma frigideira antiaderente untada.",
+      "Despeje uma concha da massa e doure dos dois lados.",
+      "Recheie a gosto."
+    ]
+  },
+  {
+    "id": "vitamina-banana",
+    "title": "Vitamina de banana",
+    "minutes": 5,
+    "ingredients": [
+      {
+        "name": "banana",
+        "keywords": [
+          "banana"
+        ],
+        "optional": false
+      },
+      {
+        "name": "leite",
+        "keywords": [
+          "leite"
+        ],
+        "optional": false
+      }
+    ],
+    "steps": [
+      "Bata a banana com o leite gelado no liquidificador.",
+      "Adoce se quiser e sirva na hora."
+    ]
+  },
+  {
+    "id": "carne-moida-acebolada",
+    "title": "Carne moída acebolada",
+    "minutes": 25,
+    "ingredients": [
+      {
+        "name": "carne moída",
+        "keywords": [
+          "carne moida",
+          "moida"
+        ],
+        "optional": false
+      },
+      {
+        "name": "cebola",
+        "keywords": [
+          "cebola"
+        ],
+        "optional": false
+      },
+      {
+        "name": "tomate",
+        "keywords": [
+          "tomate"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Refogue a cebola picada em um fio de óleo.",
+      "Junte a carne moída e mexa até soltar e dourar.",
+      "Adicione o tomate picado e tempere com sal.",
+      "Cozinhe por mais 5 minutos e sirva."
+    ]
+  },
+  {
+    "id": "bife-acebolado",
+    "title": "Bife acebolado",
+    "minutes": 20,
+    "ingredients": [
+      {
+        "name": "carne",
+        "keywords": [
+          "bife",
+          "carne",
+          "alcatra",
+          "acem",
+          "patinho"
+        ],
+        "optional": false
+      },
+      {
+        "name": "cebola",
+        "keywords": [
+          "cebola"
+        ],
+        "optional": false
+      }
+    ],
+    "steps": [
+      "Tempere os bifes com sal e alho.",
+      "Grelhe em frigideira bem quente até o ponto desejado e reserve.",
+      "Na mesma frigideira, doure a cebola em rodelas.",
+      "Sirva os bifes cobertos com a cebola."
+    ]
+  },
+  {
+    "id": "peixe-assado",
+    "title": "Peixe assado com batata",
+    "minutes": 40,
+    "ingredients": [
+      {
+        "name": "peixe",
+        "keywords": [
+          "peixe",
+          "tilapia",
+          "salmao",
+          "pescada"
+        ],
+        "optional": false
+      },
+      {
+        "name": "batata",
+        "keywords": [
+          "batata"
+        ],
+        "optional": true
+      },
+      {
+        "name": "limão",
+        "keywords": [
+          "limao"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Tempere o peixe com sal e limão.",
+      "Distribua as batatas em fatias em uma assadeira untada.",
+      "Coloque o peixe por cima.",
+      "Asse a 200 °C por cerca de 30 minutos."
+    ]
+  },
+  {
+    "id": "torrada-queijo-presunto",
+    "title": "Torrada de queijo e presunto",
+    "minutes": 10,
+    "ingredients": [
+      {
+        "name": "pão",
+        "keywords": [
+          "pao"
+        ],
+        "optional": false
+      },
+      {
+        "name": "queijo",
+        "keywords": [
+          "queijo"
+        ],
+        "optional": false
+      },
+      {
+        "name": "presunto",
+        "keywords": [
+          "presunto"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Monte o sanduíche com o queijo e o presunto.",
+      "Toste em frigideira ou sanduicheira até o queijo derreter."
+    ]
+  },
+  {
+    "id": "strogonoff-frango",
+    "title": "Strogonoff de frango",
+    "minutes": 35,
+    "ingredients": [
+      {
+        "name": "frango",
+        "keywords": [
+          "frango"
+        ],
+        "optional": false
+      },
+      {
+        "name": "creme de leite",
+        "keywords": [
+          "creme de leite"
+        ],
+        "optional": false
+      },
+      {
+        "name": "cebola",
+        "keywords": [
+          "cebola"
+        ],
+        "optional": true
+      },
+      {
+        "name": "molho de tomate",
+        "keywords": [
+          "molho de tomate",
+          "extrato de tomate"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Corte o frango em cubos e tempere com sal e alho.",
+      "Doure o frango com a cebola picada.",
+      "Junte o molho de tomate e cozinhe por 10 minutos.",
+      "Desligue o fogo e misture o creme de leite."
+    ]
+  },
+  {
+    "id": "ovos-mexidos",
+    "title": "Ovos mexidos",
+    "minutes": 10,
+    "ingredients": [
+      {
+        "name": "ovo",
+        "keywords": [
+          "ovo",
+          "ovos"
+        ],
+        "optional": false
+      },
+      {
+        "name": "leite",
+        "keywords": [
+          "leite"
+        ],
+        "optional": true
+      },
+      {
+        "name": "queijo",
+        "keywords": [
+          "queijo"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Bata os ovos com sal e um pouco de leite.",
+      "Cozinhe em fogo baixo mexendo sempre.",
+      "Retire do fogo ainda cremosos e finalize com queijo ralado."
+    ]
+  },
+  {
+    "id": "pure-batata",
+    "title": "Purê de batata",
+    "minutes": 30,
+    "ingredients": [
+      {
+        "name": "batata",
+        "keywords": [
+          "batata"
+        ],
+        "optional": false
+      },
+      {
+        "name": "leite",
+        "keywords": [
+          "leite"
+        ],
+        "optional": true
+      },
+      {
+        "name": "manteiga",
+        "keywords": [
+          "manteiga"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Cozinhe as batatas descascadas até ficarem macias.",
+      "Amasse ainda quentes.",
+      "Misture o leite aquecido e a manteiga até ficar cremoso.",
+      "Acerte o sal."
+    ]
+  },
+  {
+    "id": "macarrao-molho-tomate",
+    "title": "Macarrão ao molho de tomate",
+    "minutes": 25,
+    "ingredients": [
+      {
+        "name": "macarrão",
+        "keywords": [
+          "macarrao",
+          "espaguete",
+          "penne"
+        ],
+        "optional": false
+      },
+      {
+        "name": "tomate",
+        "keywords": [
+          "tomate"
+        ],
+        "optional": false
+      },
+      {
+        "name": "queijo",
+        "keywords": [
+          "queijo"
+        ],
+        "optional": true
+      },
+      {
+        "name": "carne moída",
+        "keywords": [
+          "carne moida",
+          "moida"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Cozinhe o macarrão e escorra.",
+      "Refogue o alho e o tomate picado até formar um molho.",
+      "Se tiver, adicione a carne moída já refogada.",
+      "Misture ao macarrão e finalize com queijo ralado."
+    ]
+  },
+  {
+    "id": "salada-frutas",
+    "title": "Salada de frutas",
+    "minutes": 15,
+    "ingredients": [
+      {
+        "name": "banana",
+        "keywords": [
+          "banana"
+        ],
+        "optional": false
+      },
+      {
+        "name": "maçã",
+        "keywords": [
+          "maca"
+        ],
+        "optional": false
+      },
+      {
+        "name": "laranja",
+        "keywords": [
+          "laranja"
+        ],
+        "optional": false
+      }
+    ],
+    "steps": [
+      "Lave e descasque as frutas.",
+      "Corte em pedaços e misture em uma tigela.",
+      "Regue com suco de laranja e sirva gelada."
+    ]
+  },
+  {
+    "id": "sanduiche-natural",
+    "title": "Sanduíche natural",
+    "minutes": 10,
+    "ingredients": [
+      {
+        "name": "pão",
+        "keywords": [
+          "pao"
+        ],
+        "optional": false
+      },
+      {
+        "name": "queijo",
+        "keywords": [
+          "queijo"
+        ],
+        "optional": false
+      },
+      {
+        "name": "tomate",
+        "keywords": [
+          "tomate"
+        ],
+        "optional": true
+      },
+      {
+        "name": "alface",
+        "keywords": [
+          "alface"
+        ],
+        "optional": true
+      },
+      {
+        "name": "frango",
+        "keywords": [
+          "frango"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Passe uma camada de requeijão ou maionese no pão.",
+      "Monte com o queijo, o tomate, a alface e o frango desfiado.",
+      "Feche e corte ao meio."
+    ]
+  },
+  {
+    "id": "arroz-legumes",
+    "title": "Arroz com legumes",
+    "minutes": 30,
+    "ingredients": [
+      {
+        "name": "arroz",
+        "keywords": [
+          "arroz"
+        ],
+        "optional": false
+      },
+      {
+        "name": "cenoura",
+        "keywords": [
+          "cenoura"
+        ],
+        "optional": false
+      },
+      {
+        "name": "ervilha",
+        "keywords": [
+          "ervilha"
+        ],
+        "optional": true
+      },
+      {
+        "name": "cebola",
+        "keywords": [
+          "cebola"
+        ],
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Refogue a cebola e a cenoura ralada.",
+      "Junte o arroz e refogue por 1 minuto.",
+      "Cubra com água, adicione a ervilha e cozinhe até secar."
+    ]
+  },
+  {
+    "id": "bolo-simples",
+    "title": "Bolo simples",
+    "minutes": 50,
+    "ingredients": [
+      {
+        "name": "farinha",
+        "keywords": [
+          "farinha"
+        ],
+        "optional": false
+      },
+      {
+        "name": "ovo",
+        "keywords": [
+          "ovo",
+          "ovos"
+        ],
+        "optional": false
+      },
+      {
+        "name": "leite",
+        "keywords": [
+          "leite"
+        ],
+        "optional": false
+      },
+      {
+        "name": "açúcar",
+        "keywords": [
+          "acucar"
+        ],
+        "optional": false
+      }
+    ],
+    "steps": [
+      "Bata os ovos com o açúcar até ficar claro.",
+      "Adicione o leite e a farinha aos poucos.",
+      "Despeje em forma untada.",
+      "Asse a 180 °C por cerca de 40 minutos."
+    ]
+  }
+]
