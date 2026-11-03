@@ -46,6 +46,17 @@ class ItemProvider extends ChangeNotifier {
     return null;
   }
 
+  /// Histórico para autocompletar. Se falhar, o formulário só fica sem sugestões.
+  Future<List<FoodItem>> loadHistory() async {
+    final id = _householdId;
+    if (id == null) return const [];
+    try {
+      return await _service.fetchRecentItems(id);
+    } on AppException {
+      return const [];
+    }
+  }
+
   /// Cria quando o `id` está vazio; senão, edita.
   Future<bool> save(FoodItem item) => _run(() async {
     if (item.id.isEmpty) {

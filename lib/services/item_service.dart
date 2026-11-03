@@ -36,6 +36,23 @@ class ItemService {
         });
   }
 
+  /// Últimos alimentos cadastrados (ativos, consumidos ou descartados),
+  /// usados para autocompletar o formulário (RF20).
+  Future<List<FoodItem>> fetchRecentItems(
+    String householdId, {
+    int limit = 100,
+  }) {
+    return _guard(() async {
+      final snapshot = await _items(householdId)
+          .orderBy('updatedAt', descending: true)
+          .limit(limit)
+          .get();
+      return [
+        for (final doc in snapshot.docs) FoodItem.fromMap(doc.id, doc.data()),
+      ];
+    });
+  }
+
   /// Locais da casa (geladeira, freezer, despensa) em ordem alfabética.
   Stream<List<StoragePlace>> watchStorages(String householdId) {
     return _db

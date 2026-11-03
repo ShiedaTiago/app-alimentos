@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/utils/date_utils.dart';
+import '../../core/utils/expiry.dart';
+import '../../core/utils/item_history.dart';
 import '../../core/utils/text_utils.dart';
 import '../../core/utils/validators.dart';
 import '../../models/food_item.dart';
@@ -61,8 +63,12 @@ class _ItemFormState extends State<_ItemForm> {
   late final TextEditingController _notes;
   late FoodCategory _category;
   late FoodUnit _unit;
+  late final FocusNode _nameFocus;
   String? _storageId;
   DateTime? _expiresAt;
+  List<FoodItem> _history = const [];
+  // Depois que o usuário escolhe a data, a sugestão não sobrescreve mais.
+  late bool _expiryPickedByUser;
 
   @override
   void initState() {
@@ -79,11 +85,48 @@ class _ItemFormState extends State<_ItemForm> {
     _storageId =
         item?.storageId ??
         (widget.storages.isEmpty ? null : widget.storages.first.id);
-    context.read<ItemProvider>().clearError();
+    _nameFocus = FocusNode();
+    _expiryPickedByUser = item != null;
+    final provider = context.read<ItemProvider>()..clearError();
+    if (item == null) {
+      provider.loadHistory().then((history) {
+        if (mounted) setState(() => _history = history);
+      });
+    }
+  }
+
+  /// Dias sugeridos (RN05) para a categoria e o tipo do local escolhidos.
+  int? get _suggestedDays {
+    for (final storage in widget.storages) {
+      if (storage.id == _storageId) {
+        return suggestShelfDays(_category, storage.type);
+      }
+    }
+    return null;
+  }
+
+  /// Preenche a validade com a sugestão, se o usuário ainda não escolheu.
+  void _applySuggestedExpiry() {
+    final days = _suggestedDays;
+    if (_expiryPickedByUser || days == null) return;
+    _expiresAt = dateOnly(DateTime.now()).add(Duration(days: days));
+  }
+
+  /// Escolheu um item do histórico: reaproveita categoria, unidade e local.
+  void _fillFromHistory(FoodItem previous) {
+    setState(() {
+      _category = previous.category;
+      _unit = previous.unit;
+      if (widget.storages.any((s) => s.id == previous.storageId)) {
+        _storageId = previous.storageId;
+      }
+      _applySuggestedExpiry();
+    });
   }
 
   @override
   void dispose() {
+    _nameFocus.dispose();
     _name.dispose();
     _quantity.dispose();
     _notes.dispose();
@@ -121,25 +164,25 @@ class _ItemFormState extends State<_ItemForm> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<ItemProvider>();
+    final suggestedDays = _suggestedDays;
     return Form(
       key: _formKey,
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          TextFormField(
+          _NameField(
             controller: _name,
-            validator: validateItemName,
-            textCapitalization: TextCapitalization.sentences,
-            decoration: const InputDecoration(
-              labelText: 'Nome',
-              hintText: 'Ex.: Leite integral',
-              border: OutlineInputBorder(),
-            ),
+            focusNode: _nameFocus,
+            history: _history,
+            onSelected: _fillFromHistory,
           ),
           const SizedBox(height: 16),
           _CategoryField(
             value: _category,
-            onChanged: (v) => setState(() => _category = v),
+            onChanged: (v) => setState(() {
+              _category = v;
+              _applySuggestedExpiry();
+            }),
           ),
           const SizedBox(height: 16),
           _QuantityRow(
@@ -150,13 +193,22 @@ class _ItemFormState extends State<_ItemForm> {
           const SizedBox(height: 16),
           _ExpiryDateField(
             value: _expiresAt,
-            onChanged: (v) => setState(() => _expiresAt = v),
+            helperText: suggestedDays == null
+                ? null
+                : 'Sugestão: $suggestedDays dias (pode alterar)',
+            onChanged: (v) => setState(() {
+              _expiresAt = v;
+              _expiryPickedByUser = true;
+            }),
           ),
           const SizedBox(height: 16),
           _StorageField(
             storages: widget.storages,
             value: _storageId,
-            onChanged: (v) => setState(() => _storageId = v),
+            onChanged: (v) => setState(() {
+              _storageId = v;
+              _applySuggestedExpiry();
+            }),
           ),
           const SizedBox(height: 16),
           TextFormField(
@@ -181,6 +233,66 @@ class _ItemFormState extends State<_ItemForm> {
   }
 }
 
+/// Nome com autocompletar pelo histórico da casa (RF20).
+class _NameField extends StatelessWidget {
+  const _NameField({
+    required this.controller,
+    required this.focusNode,
+    required this.history,
+    required this.onSelected,
+  });
+
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final List<FoodItem> history;
+  final ValueChanged<FoodItem> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawAutocomplete<FoodItem>(
+      textEditingController: controller,
+      focusNode: focusNode,
+      displayStringForOption: (item) => item.name,
+      optionsBuilder: (value) => historyMatches(history, value.text),
+      onSelected: onSelected,
+      fieldViewBuilder: (context, controller, focusNode, onSubmitted) =>
+          TextFormField(
+            controller: controller,
+            focusNode: focusNode,
+            validator: validateItemName,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: const InputDecoration(
+              labelText: 'Nome',
+              hintText: 'Ex.: Leite integral',
+              border: OutlineInputBorder(),
+            ),
+          ),
+      optionsViewBuilder: (context, onSelected, options) => Align(
+        alignment: Alignment.topLeft,
+        child: Material(
+          elevation: 4,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 240, maxWidth: 360),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              children: [
+                for (final item in options)
+                  ListTile(
+                    leading: const Icon(Icons.history),
+                    title: Text(item.name),
+                    subtitle: Text(item.category.label),
+                    onTap: () => onSelected(item),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _CategoryField extends StatelessWidget {
   const _CategoryField({required this.value, required this.onChanged});
 
@@ -190,6 +302,8 @@ class _CategoryField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<FoodCategory>(
+      // A chave recria o campo quando o valor muda por fora (histórico).
+      key: ValueKey(value),
       initialValue: value,
       decoration: const InputDecoration(
         labelText: 'Categoria',
@@ -235,6 +349,7 @@ class _QuantityRow extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(
           child: DropdownButtonFormField<FoodUnit>(
+            key: ValueKey(unit),
             initialValue: unit,
             decoration: const InputDecoration(
               labelText: 'Unidade',
@@ -255,10 +370,15 @@ class _QuantityRow extends StatelessWidget {
 /// Campo de validade: abre o calendário (em pt-BR pelo `locale` do app).
 /// É um `FormField` para participar do `validate()` do formulário.
 class _ExpiryDateField extends StatelessWidget {
-  const _ExpiryDateField({required this.value, required this.onChanged});
+  const _ExpiryDateField({
+    required this.value,
+    required this.onChanged,
+    this.helperText,
+  });
 
   final DateTime? value;
   final ValueChanged<DateTime> onChanged;
+  final String? helperText;
 
   Future<void> _pick(
     BuildContext context,
@@ -280,6 +400,8 @@ class _ExpiryDateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormField<DateTime>(
+      // Recria quando a sugestão (RN05) troca a data por fora do calendário.
+      key: ValueKey(value),
       initialValue: value,
       validator: validateExpiryDate,
       builder: (field) => InkWell(
@@ -289,6 +411,7 @@ class _ExpiryDateField extends StatelessWidget {
             labelText: 'Validade',
             border: const OutlineInputBorder(),
             suffixIcon: const Icon(Icons.calendar_today),
+            helperText: helperText,
             errorText: field.errorText,
           ),
           isEmpty: field.value == null,
@@ -315,6 +438,7 @@ class _StorageField extends StatelessWidget {
     // Se o local salvo não existir mais, deixa o campo vazio para escolher outro.
     final selected = storages.any((s) => s.id == value) ? value : null;
     return DropdownButtonFormField<String>(
+      key: ValueKey(selected),
       initialValue: selected,
       validator: (v) => v == null ? 'Escolha o local.' : null,
       decoration: const InputDecoration(

@@ -7,6 +7,7 @@ FoodItem buildItem({
   DateTime? expiresAt,
   ItemStatus status = ItemStatus.active,
   String storageId = 'fridge1',
+  DateTime? updatedAt,
 }) {
   final now = DateTime(2026, 11, 1);
   return FoodItem(
@@ -19,7 +20,7 @@ FoodItem buildItem({
     storageId: storageId,
     addedBy: 'u1',
     createdAt: now,
-    updatedAt: now,
+    updatedAt: updatedAt ?? now,
     status: status,
   );
 }
