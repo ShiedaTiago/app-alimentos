@@ -6,6 +6,7 @@ FoodItem buildItem({
   FoodCategory category = FoodCategory.dairy,
   DateTime? expiresAt,
   ItemStatus status = ItemStatus.active,
+  String storageId = 'fridge1',
 }) {
   final now = DateTime(2026, 11, 1);
   return FoodItem(
@@ -15,7 +16,7 @@ FoodItem buildItem({
     quantity: 1,
     unit: FoodUnit.unit,
     expiresAt: expiresAt ?? DateTime(2026, 12, 31),
-    storageId: 'fridge1',
+    storageId: storageId,
     addedBy: 'u1',
     createdAt: now,
     updatedAt: now,

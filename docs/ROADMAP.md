@@ -29,7 +29,7 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [x] Model `FoodItem` + enums + `expiry.dart` com testes (RN01)
 - [x] `ItemService` (stream de ativos, criar, editar, excluir, consumir/descartar)
 - [x] Formulário com validação e date picker pt-BR
-- [ ] Lista ordenada por validade com `ExpiryBadge`, filtros por local/status, busca
+- [x] Lista ordenada por validade com `ExpiryBadge`, filtros por local/status, busca
 - [ ] Home com resumo (vencidos / vencendo / total) e "consuma primeiro"
 - [ ] Bottom navigation (Início · Alimentos · Receitas · Perfil)
 

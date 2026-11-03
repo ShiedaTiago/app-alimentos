@@ -15,3 +15,8 @@ String normalizeText(String text) {
   }
   return buffer.toString().trim();
 }
+
+/// Quantidade para exibir: 2.0 vira "2"; 1.5 vira "1,5".
+String formatQuantity(double value) => value == value.roundToDouble()
+    ? value.toInt().toString()
+    : value.toString().replaceAll('.', ',');

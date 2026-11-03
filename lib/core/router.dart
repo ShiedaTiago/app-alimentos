@@ -11,6 +11,7 @@ import '../screens/home/home_screen.dart';
 import '../screens/household/household_screen.dart';
 import '../screens/household/household_setup_screen.dart';
 import '../screens/items/item_form_screen.dart';
+import '../screens/items/item_list_screen.dart';
 import '../screens/profile/profile_screen.dart';
 
 const _authPaths = {'/login', '/register', '/forgot-password'};
@@ -46,6 +47,7 @@ GoRouter createRouter(AuthProvider auth, HouseholdProvider household) {
       GoRoute(path: '/home', builder: (_, _) => const HomeScreen()),
       GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
       GoRoute(path: '/household', builder: (_, _) => const HouseholdScreen()),
+      GoRoute(path: '/items', builder: (_, _) => const ItemListScreen()),
       GoRoute(path: '/items/new', builder: (_, _) => const ItemFormScreen()),
       GoRoute(
         path: '/items/:id/edit',

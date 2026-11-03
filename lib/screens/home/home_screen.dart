@@ -29,9 +29,9 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(child: Text('Você está logado como $email')),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => context.push('/items/new'),
-        icon: const Icon(Icons.add),
-        label: const Text('Alimento'),
+        onPressed: () => context.push('/items'),
+        icon: const Icon(Icons.kitchen),
+        label: const Text('Alimentos'),
       ),
     );
   }

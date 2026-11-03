@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/utils/date_utils.dart';
+import '../../core/utils/text_utils.dart';
 import '../../core/utils/validators.dart';
 import '../../models/food_item.dart';
 import '../../models/storage_place.dart';
@@ -69,7 +70,7 @@ class _ItemFormState extends State<_ItemForm> {
     final item = widget.item;
     _name = TextEditingController(text: item?.name);
     _quantity = TextEditingController(
-      text: item == null ? '1' : _formatQuantity(item.quantity),
+      text: item == null ? '1' : formatQuantity(item.quantity),
     );
     _notes = TextEditingController(text: item?.notes);
     _category = item?.category ?? FoodCategory.other;
@@ -88,11 +89,6 @@ class _ItemFormState extends State<_ItemForm> {
     _notes.dispose();
     super.dispose();
   }
-
-  // 2.0 vira "2"; 1.5 vira "1,5".
-  static String _formatQuantity(double value) => value == value.roundToDouble()
-      ? value.toInt().toString()
-      : value.toString().replaceAll('.', ',');
 
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
