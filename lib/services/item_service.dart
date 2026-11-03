@@ -16,17 +16,17 @@ class ItemService {
       _db.collection('households').doc(householdId).collection('items');
 
   /// Alimentos ativos em tempo real, do que vence primeiro ao último.
-  /// Pode exigir índice composto (status + expiresAt) no Firestore.
+  /// A ordenação é feita aqui no app (e não com orderBy) para não exigir
+  /// índice composto (status + expiresAt) no Firestore.
   Stream<List<FoodItem>> watchActiveItems(String householdId) {
     return _items(householdId)
         .where('status', isEqualTo: ItemStatus.active.name)
-        .orderBy('expiresAt')
         .snapshots()
         .map(
           (snapshot) => [
             for (final doc in snapshot.docs)
               FoodItem.fromMap(doc.id, doc.data()),
-          ],
+          ]..sort((a, b) => a.expiresAt.compareTo(b.expiresAt)),
         )
         .handleError((Object error) {
           if (error is FirebaseException) {
