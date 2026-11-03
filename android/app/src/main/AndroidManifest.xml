@@ -4,7 +4,7 @@
     <!-- Busca de produtos no Open Food Facts (o build de release não inclui por padrão). -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="gestao_alimentos"
+        android:label="Gestão de Alimentos"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
