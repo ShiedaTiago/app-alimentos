@@ -23,6 +23,38 @@ void main() {
     });
   });
 
+  group('validateItemName', () {
+    test('rejeita vazio e muito curto', () {
+      expect(validateItemName(''), isNotNull);
+      expect(validateItemName(' L '), isNotNull);
+    });
+    test('aceita nome válido', () {
+      expect(validateItemName('Leite'), isNull);
+    });
+  });
+
+  group('validateQuantity', () {
+    test('rejeita vazio, texto, zero e negativo', () {
+      expect(validateQuantity(''), isNotNull);
+      expect(validateQuantity('abc'), isNotNull);
+      expect(validateQuantity('0'), isNotNull);
+      expect(validateQuantity('-2'), isNotNull);
+    });
+    test('aceita inteiro e decimal com vírgula ou ponto', () {
+      expect(validateQuantity('2'), isNull);
+      expect(validateQuantity('1,5'), isNull);
+      expect(validateQuantity(' 0.5 '), isNull);
+      expect(parseQuantity('1,5'), 1.5);
+    });
+  });
+
+  group('validateExpiryDate', () {
+    test('exige a data', () {
+      expect(validateExpiryDate(null), isNotNull);
+      expect(validateExpiryDate(DateTime(2026, 11, 30)), isNull);
+    });
+  });
+
   group('validateInviteCodeInput', () {
     test('rejeita vazio, tamanho errado e caracteres ambíguos', () {
       expect(validateInviteCodeInput(null), isNotNull);

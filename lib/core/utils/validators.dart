@@ -50,6 +50,30 @@ String? validateInviteCodeInput(String? value) {
   return null;
 }
 
+String? validateItemName(String? value) {
+  final text = value?.trim() ?? '';
+  if (text.isEmpty) return 'Informe o nome do alimento.';
+  if (text.length < 2) return 'O nome deve ter pelo menos 2 caracteres.';
+  return null;
+}
+
+/// Lê "1,5" ou "1.5". Devolve null se não for número.
+double? parseQuantity(String? value) =>
+    double.tryParse((value ?? '').trim().replaceAll(',', '.'));
+
+String? validateQuantity(String? value) {
+  if ((value ?? '').trim().isEmpty) return 'Informe a quantidade.';
+  final quantity = parseQuantity(value);
+  if (quantity == null) return 'Quantidade inválida.';
+  if (quantity <= 0) return 'A quantidade deve ser maior que zero.';
+  return null;
+}
+
+String? validateExpiryDate(DateTime? value) {
+  if (value == null) return 'Informe a data de validade.';
+  return null;
+}
+
 String? validateConfirmPassword(String? value, String password) {
   if (value == null || value.isEmpty) return 'Confirme a senha.';
   if (value != password) return 'As senhas não são iguais.';

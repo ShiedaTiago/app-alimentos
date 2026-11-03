@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../core/app_exception.dart';
 import '../core/firestore_errors.dart';
 import '../models/food_item.dart';
+import '../models/storage_place.dart';
 
 /// Única camada que fala com o Firestore sobre os alimentos de uma casa.
 class ItemService {
@@ -33,6 +34,22 @@ class ItemService {
           }
           throw error;
         });
+  }
+
+  /// Locais da casa (geladeira, freezer, despensa) em ordem alfabética.
+  Stream<List<StoragePlace>> watchStorages(String householdId) {
+    return _db
+        .collection('households')
+        .doc(householdId)
+        .collection('storages')
+        .orderBy('name')
+        .snapshots()
+        .map(
+          (snapshot) => [
+            for (final doc in snapshot.docs)
+              StoragePlace.fromMap(doc.id, doc.data()),
+          ],
+        );
   }
 
   /// Salva um alimento novo e devolve o id gerado. O `id` de [item] é ignorado.
