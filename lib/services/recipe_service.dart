@@ -49,12 +49,14 @@ class RecipeService {
       }
 
       if (have.isEmpty) continue; // nada em comum com a casa
-      suggestions.add(RecipeSuggestion(
-        recipe: recipe,
-        haveIngredients: have,
-        missingIngredients: missing,
-        expiringCount: expiring,
-      ));
+      suggestions.add(
+        RecipeSuggestion(
+          recipe: recipe,
+          haveIngredients: have,
+          missingIngredients: missing,
+          expiringCount: expiring,
+        ),
+      );
     }
 
     suggestions.sort(_compare);
@@ -77,8 +79,9 @@ class RecipeService {
     if (byExpiring != 0) return byExpiring;
     final byHave = b.haveIngredients.length.compareTo(a.haveIngredients.length);
     if (byHave != 0) return byHave;
-    final byMissing =
-        a.missingIngredients.length.compareTo(b.missingIngredients.length);
+    final byMissing = a.missingIngredients.length.compareTo(
+      b.missingIngredients.length,
+    );
     if (byMissing != 0) return byMissing;
     return a.recipe.title.compareTo(b.recipe.title);
   }

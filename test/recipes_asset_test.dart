@@ -19,8 +19,11 @@ void main() {
   test('toda receita tem ingredientes obrigatórios e passos', () {
     for (final recipe in recipes) {
       expect(recipe.steps, isNotEmpty, reason: recipe.id);
-      expect(recipe.ingredients.any((i) => !i.optional), isTrue,
-          reason: recipe.id);
+      expect(
+        recipe.ingredients.any((i) => !i.optional),
+        isTrue,
+        reason: recipe.id,
+      );
     }
   });
 
@@ -29,7 +32,11 @@ void main() {
     for (final recipe in recipes) {
       for (final ingredient in recipe.ingredients) {
         for (final keyword in ingredient.keywords) {
-          expect(plain.hasMatch(keyword), isTrue, reason: '${recipe.id}: $keyword');
+          expect(
+            plain.hasMatch(keyword),
+            isTrue,
+            reason: '${recipe.id}: $keyword',
+          );
         }
       }
     }

@@ -32,8 +32,16 @@ void main() {
 
   test('nomes repetidos aparecem uma vez, com os dados mais recentes', () {
     final repeated = [
-      buildItem(name: 'Frango', storageId: 'old', updatedAt: DateTime(2026, 1, 1)),
-      buildItem(name: 'frango', storageId: 'new', updatedAt: DateTime(2026, 5, 1)),
+      buildItem(
+        name: 'Frango',
+        storageId: 'old',
+        updatedAt: DateTime(2026, 1, 1),
+      ),
+      buildItem(
+        name: 'frango',
+        storageId: 'new',
+        updatedAt: DateTime(2026, 5, 1),
+      ),
     ];
     final result = historyMatches(repeated, 'fra');
     expect(result, hasLength(1));

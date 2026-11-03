@@ -24,7 +24,11 @@ class StoragePlace {
     return StoragePlace(
       id: id,
       name: map['name'] as String,
-      type: enumByName(StorageType.values, map['type'] as String?, StorageType.pantry),
+      type: enumByName(
+        StorageType.values,
+        map['type'] as String?,
+        StorageType.pantry,
+      ),
       minTemp: (map['minTemp'] as num?)?.toDouble(),
       maxTemp: (map['maxTemp'] as num?)?.toDouble(),
       deviceId: map['deviceId'] as String?,

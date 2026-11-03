@@ -59,10 +59,9 @@ class HouseholdProvider extends ChangeNotifier {
     _isReady = false;
     if (uid != null) {
       // onError evita travar no splash se o Firestore recusar a leitura.
-      _userSubscription = _service.watchUser(uid).listen(
-            _onProfile,
-            onError: (_) => _onProfile(null),
-          );
+      _userSubscription = _service
+          .watchUser(uid)
+          .listen(_onProfile, onError: (_) => _onProfile(null));
     }
     notifyListeners();
   }

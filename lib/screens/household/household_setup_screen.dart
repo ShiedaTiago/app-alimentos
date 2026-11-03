@@ -104,7 +104,11 @@ class _CreateFormState extends State<_CreateForm> {
             ),
           ),
           const SizedBox(height: 16),
-          LoadingButton(label: 'Criar casa', isLoading: isBusy, onPressed: _submit),
+          LoadingButton(
+            label: 'Criar casa',
+            isLoading: isBusy,
+            onPressed: _submit,
+          ),
         ],
       ),
     );

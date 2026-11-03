@@ -41,8 +41,10 @@ void main() {
     expect(household!.name, 'Casa da Ana');
     expect(household.memberIds, ['ana']);
 
-    final invite =
-        await db.collection('inviteCodes').doc(household.inviteCode).get();
+    final invite = await db
+        .collection('inviteCodes')
+        .doc(household.inviteCode)
+        .get();
     expect(invite.data()!['householdId'], householdId);
 
     final storages = await db

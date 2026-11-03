@@ -41,10 +41,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
     await context.read<AuthProvider>().register(
-          _name.text,
-          _email.text,
-          _password.text,
-        );
+      _name.text,
+      _email.text,
+      _password.text,
+    );
   }
 
   @override

@@ -34,7 +34,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
-    final ok = await context.read<AuthProvider>().sendPasswordReset(_email.text);
+    final ok = await context.read<AuthProvider>().sendPasswordReset(
+      _email.text,
+    );
     if (ok && mounted) setState(() => _sent = true);
   }
 

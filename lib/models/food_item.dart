@@ -79,8 +79,7 @@ class FoodItem {
   final DateTime? closedAt;
 
   factory FoodItem.fromMap(String id, Map<String, dynamic> map) {
-    DateTime? optionalDate(String key) =>
-        (map[key] as Timestamp?)?.toDate();
+    DateTime? optionalDate(String key) => (map[key] as Timestamp?)?.toDate();
 
     return FoodItem(
       id: id,

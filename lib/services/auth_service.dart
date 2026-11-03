@@ -9,7 +9,7 @@ import 'user_service.dart';
 /// [AppException] com mensagem em pt-BR.
 class AuthService {
   AuthService(this._userService, {FirebaseAuth? auth})
-      : _auth = auth ?? FirebaseAuth.instance;
+    : _auth = auth ?? FirebaseAuth.instance;
 
   final UserService _userService;
   final FirebaseAuth _auth;

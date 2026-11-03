@@ -5,8 +5,7 @@ String authErrorMessage(String code) {
     'invalid-email' => 'E-mail inválido.',
     'invalid-credential' ||
     'wrong-password' ||
-    'user-not-found' =>
-      'E-mail ou senha incorretos.',
+    'user-not-found' => 'E-mail ou senha incorretos.',
     'email-already-in-use' => 'Este e-mail já está cadastrado.',
     'weak-password' =>
       'Senha fraca. Use pelo menos 8 caracteres com letras e números.',

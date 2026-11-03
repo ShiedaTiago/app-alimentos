@@ -10,8 +10,11 @@ void main() {
   DateTime inDays(int days) => DateTime(2026, 11, 10 + days);
 
   const eggs = RecipeIngredient(name: 'ovo', keywords: ['ovo', 'ovos']);
-  const tomato =
-      RecipeIngredient(name: 'tomate', keywords: ['tomate'], optional: true);
+  const tomato = RecipeIngredient(
+    name: 'tomate',
+    keywords: ['tomate'],
+    optional: true,
+  );
   const beans = RecipeIngredient(name: 'feijão', keywords: ['feijao']);
   const rice = RecipeIngredient(name: 'arroz', keywords: ['arroz']);
 
@@ -86,8 +89,16 @@ void main() {
 
   test('ignora alimentos consumidos, descartados e vencidos (RN02)', () {
     final items = [
-      buildItem(name: 'Ovos', status: ItemStatus.consumed, expiresAt: inDays(5)),
-      buildItem(name: 'Arroz', status: ItemStatus.discarded, expiresAt: inDays(5)),
+      buildItem(
+        name: 'Ovos',
+        status: ItemStatus.consumed,
+        expiresAt: inDays(5),
+      ),
+      buildItem(
+        name: 'Arroz',
+        status: ItemStatus.discarded,
+        expiresAt: inDays(5),
+      ),
       buildItem(name: 'Feijão', expiresAt: inDays(-1)),
     ];
     expect(service.suggest(items, today: today), isEmpty);

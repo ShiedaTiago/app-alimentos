@@ -4,7 +4,7 @@ import '../models/app_user.dart';
 
 class UserService {
   UserService({FirebaseFirestore? firestore})
-      : _users = (firestore ?? FirebaseFirestore.instance).collection('users');
+    : _users = (firestore ?? FirebaseFirestore.instance).collection('users');
 
   final CollectionReference<Map<String, dynamic>> _users;
 

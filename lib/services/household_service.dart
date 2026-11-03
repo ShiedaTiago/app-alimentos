@@ -16,11 +16,12 @@ const _defaultStorages = [
 /// Única camada que fala com o Firestore sobre casas, convites e membros.
 class HouseholdService {
   HouseholdService({FirebaseFirestore? firestore})
-      : _db = firestore ?? FirebaseFirestore.instance;
+    : _db = firestore ?? FirebaseFirestore.instance;
 
   final FirebaseFirestore _db;
 
-  CollectionReference<Map<String, dynamic>> get _users => _db.collection('users');
+  CollectionReference<Map<String, dynamic>> get _users =>
+      _db.collection('users');
   CollectionReference<Map<String, dynamic>> get _households =>
       _db.collection('households');
   CollectionReference<Map<String, dynamic>> get _inviteCodes =>
@@ -28,13 +29,17 @@ class HouseholdService {
 
   /// Perfil do usuário em tempo real (null enquanto o documento não existe).
   Stream<AppUser?> watchUser(String uid) {
-    return _users.doc(uid).snapshots().map(
-          (doc) => doc.exists ? AppUser.fromMap(doc.id, doc.data()!) : null,
-        );
+    return _users
+        .doc(uid)
+        .snapshots()
+        .map((doc) => doc.exists ? AppUser.fromMap(doc.id, doc.data()!) : null);
   }
 
   Stream<Household?> watchHousehold(String id) {
-    return _households.doc(id).snapshots().map(
+    return _households
+        .doc(id)
+        .snapshots()
+        .map(
           (doc) => doc.exists ? Household.fromMap(doc.id, doc.data()!) : null,
         );
   }
@@ -66,7 +71,11 @@ class HouseholdService {
         final ref = householdRef.collection('storages').doc();
         storages.set(
           ref,
-          StoragePlace(id: ref.id, name: storage.name, type: storage.type).toMap(),
+          StoragePlace(
+            id: ref.id,
+            name: storage.name,
+            type: storage.type,
+          ).toMap(),
         );
       }
       await storages.commit();
@@ -93,7 +102,9 @@ class HouseholdService {
   /// Busca o perfil de cada membro (um `get` por documento, que as regras permitem).
   Future<List<AppUser>> fetchMembers(List<String> memberIds) {
     return _guard(() async {
-      final docs = await Future.wait(memberIds.map((id) => _users.doc(id).get()));
+      final docs = await Future.wait(
+        memberIds.map((id) => _users.doc(id).get()),
+      );
       return [
         for (final doc in docs)
           if (doc.exists) AppUser.fromMap(doc.id, doc.data()!),

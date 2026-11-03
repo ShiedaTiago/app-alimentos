@@ -47,9 +47,8 @@ class _InviteCodeCard extends StatelessWidget {
   Future<void> _copy(BuildContext context) async {
     await Clipboard.setData(ClipboardData(text: code));
     if (!context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Código copiado.')),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Código copiado.')));
   }
 
   @override
@@ -60,7 +59,8 @@ class _InviteCodeCard extends StatelessWidget {
         title: const Text('Código de convite'),
         subtitle: Text(
           code,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(letterSpacing: 4),
+          style: Theme.of(context).textTheme.titleLarge
+              ?.copyWith(letterSpacing: 4),
         ),
         trailing: IconButton(
           icon: const Icon(Icons.copy),

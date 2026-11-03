@@ -22,26 +22,26 @@ ExpiryStatus expiryStatusOf(FoodItem item, {DateTime? today}) {
 int? suggestShelfDays(FoodCategory category, StorageType storage) {
   return switch (category) {
     FoodCategory.meat => switch (storage) {
-        StorageType.fridge => 3,
-        StorageType.freezer => 120,
-        StorageType.pantry => null,
-      },
+      StorageType.fridge => 3,
+      StorageType.freezer => 120,
+      StorageType.pantry => null,
+    },
     FoodCategory.poultry || FoodCategory.fish => switch (storage) {
-        StorageType.fridge => 2,
-        StorageType.freezer => 90,
-        StorageType.pantry => null,
-      },
+      StorageType.fridge => 2,
+      StorageType.freezer => 90,
+      StorageType.pantry => null,
+    },
     FoodCategory.dairy => storage == StorageType.fridge ? 5 : null,
     FoodCategory.produce => switch (storage) {
-        StorageType.fridge => 5,
-        StorageType.freezer => 60,
-        StorageType.pantry => 5,
-      },
+      StorageType.fridge => 5,
+      StorageType.freezer => 60,
+      StorageType.pantry => 5,
+    },
     FoodCategory.leftovers => switch (storage) {
-        StorageType.fridge => 3,
-        StorageType.freezer => 60,
-        StorageType.pantry => null,
-      },
+      StorageType.fridge => 3,
+      StorageType.freezer => 60,
+      StorageType.pantry => null,
+    },
     _ => null,
   };
 }
