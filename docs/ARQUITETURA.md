@@ -10,7 +10,7 @@
 | Navegação | `go_router` | Redirecionamento automático conforme login/casa |
 | Datas | `intl` (pt_BR) | Formatação dd/MM/aaaa |
 | Código de barras [D] | `mobile_scanner` + `http` (Open Food Facts) | Preencher nome/categoria |
-| Notificações [D] | `flutter_local_notifications` | Alerta diário de validade |
+| Notificações [D] | `flutter_local_notifications` + `timezone` | Alerta diário de validade (9h, fuso America/Sao_Paulo) |
 
 **Regra:** não adicionar pacotes fora desta lista sem perguntar ao Tiago.
 

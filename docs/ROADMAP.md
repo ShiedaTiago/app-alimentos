@@ -41,7 +41,7 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 ## Fase 5 — Extras (19–20/11)  — só se as fases 1–4 estiverem prontas
 - [ ] [D] Leitor de código de barras + Open Food Facts
 - [x] [D] Validade sugerida (RN05) e autocompletar pelo histórico
-- [ ] [D] Notificação local diária
+- [x] [D] Notificação local diária
 - [ ] [D] Simulador RFID (tela debug) — bom para mostrar a visão do TCC
 
 ## Fase 6 — Entrega (21–23/11)

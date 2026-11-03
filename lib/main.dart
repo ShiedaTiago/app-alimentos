@@ -8,10 +8,12 @@ import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
 import 'providers/household_provider.dart';
 import 'providers/item_provider.dart';
+import 'providers/notification_provider.dart';
 import 'providers/recipe_provider.dart';
 import 'services/auth_service.dart';
 import 'services/household_service.dart';
 import 'services/item_service.dart';
+import 'services/notification_service.dart';
 import 'services/user_service.dart';
 
 Future<void> main() async {
@@ -23,6 +25,12 @@ Future<void> main() async {
   final authProvider = AuthProvider(AuthService(UserService()));
   final householdProvider = HouseholdProvider(HouseholdService(), authProvider);
   final itemProvider = ItemProvider(ItemService(), householdProvider);
+
+  final notificationService = NotificationService();
+  await notificationService.initialize();
+  notificationService.requestPermission();
+  NotificationProvider(itemProvider, notificationService);
+
   runApp(
     App(
       authProvider: authProvider,
