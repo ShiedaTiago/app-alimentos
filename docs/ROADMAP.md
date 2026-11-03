@@ -23,7 +23,7 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [x] Entrar com código
 - [x] Redirect: logado sem casa → setup
 - [x] Tela da casa (nome, código com copiar, membros)
-- [ ] `firestore.rules` publicadas e testadas no Rules Playground
+- [x] `firestore.rules` publicadas e testadas no Rules Playground
 
 ## Fase 3 — Alimentos (11–15/11)  ⭐ exigência da professora
 - [x] Model `FoodItem` + enums + `expiry.dart` com testes (RN01)
