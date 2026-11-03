@@ -6,17 +6,23 @@ import '../core/app_exception.dart';
 import '../models/food_item.dart';
 import '../models/storage_place.dart';
 import '../services/item_service.dart';
+import '../services/product_lookup_service.dart';
 import 'household_provider.dart';
 
 /// Alimentos ativos e locais da casa atual, em tempo real.
 /// Troca as assinaturas sozinho quando o usuário muda de casa ou sai.
 class ItemProvider extends ChangeNotifier {
-  ItemProvider(this._service, this._household) {
+  ItemProvider(
+    this._service,
+    this._household, {
+    ProductLookupService? productLookup,
+  }) : _productLookup = productLookup ?? ProductLookupService() {
     _household.addListener(_onHouseholdChanged);
     _onHouseholdChanged();
   }
 
   final ItemService _service;
+  final ProductLookupService _productLookup;
   final HouseholdProvider _household;
 
   StreamSubscription<List<FoodItem>>? _itemsSubscription;
@@ -54,6 +60,23 @@ class ItemProvider extends ChangeNotifier {
       return await _service.fetchRecentItems(id);
     } on AppException {
       return const [];
+    }
+  }
+
+  /// Busca o produto do código lido. Em caso de falha, guarda a mensagem em
+  /// [error] e retorna `null` (o usuário preenche à mão).
+  Future<ProductInfo?> lookupBarcode(String barcode) async {
+    _isBusy = true;
+    _error = null;
+    notifyListeners();
+    try {
+      return await _productLookup.lookup(barcode);
+    } on AppException catch (e) {
+      _error = e.message;
+      return null;
+    } finally {
+      _isBusy = false;
+      notifyListeners();
     }
   }
 

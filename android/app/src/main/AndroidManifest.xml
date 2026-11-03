@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Reagenda as notificações depois que o celular reinicia. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- Busca de produtos no Open Food Facts (o build de release não inclui por padrão). -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="gestao_alimentos"
         android:name="${applicationName}"

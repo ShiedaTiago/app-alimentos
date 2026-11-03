@@ -69,6 +69,8 @@ class _ItemFormState extends State<_ItemForm> {
   List<FoodItem> _history = const [];
   // Depois que o usuário escolhe a data, a sugestão não sobrescreve mais.
   late bool _expiryPickedByUser;
+  String? _barcode;
+  late ItemSource _source;
 
   @override
   void initState() {
@@ -87,6 +89,8 @@ class _ItemFormState extends State<_ItemForm> {
         (widget.storages.isEmpty ? null : widget.storages.first.id);
     _nameFocus = FocusNode();
     _expiryPickedByUser = item != null;
+    _barcode = item?.barcode;
+    _source = item?.source ?? ItemSource.manual;
     final provider = context.read<ItemProvider>()..clearError();
     if (item == null) {
       provider.loadHistory().then((history) {
@@ -124,6 +128,35 @@ class _ItemFormState extends State<_ItemForm> {
     });
   }
 
+  /// Lê o código pela câmera e preenche nome/categoria (RF18). Se o produto
+  /// não estiver na base, guarda só o código e o usuário digita o resto.
+  Future<void> _scanBarcode() async {
+    final code = await context.push<String>('/scanner');
+    if (code == null || !mounted) return;
+    setState(() {
+      _barcode = code;
+      _source = ItemSource.barcode;
+    });
+    final provider = context.read<ItemProvider>();
+    final product = await provider.lookupBarcode(code);
+    if (!mounted) return;
+    if (product == null) {
+      if (provider.error == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Produto não encontrado. Preencha o nome.'),
+          ),
+        );
+      }
+      return;
+    }
+    setState(() {
+      _name.text = product.name;
+      _category = product.category;
+      _applySuggestedExpiry();
+    });
+  }
+
   @override
   void dispose() {
     _nameFocus.dispose();
@@ -148,8 +181,8 @@ class _ItemFormState extends State<_ItemForm> {
       expiresAt: dateOnly(_expiresAt!),
       storageId: _storageId!,
       notes: notes.isEmpty ? null : notes,
-      barcode: original?.barcode,
-      source: original?.source ?? ItemSource.manual,
+      barcode: _barcode,
+      source: _source,
       tagId: original?.tagId,
       lastSeenAt: original?.lastSeenAt,
       addedBy: original?.addedBy ?? context.read<AuthProvider>().user!.uid,
@@ -170,6 +203,18 @@ class _ItemFormState extends State<_ItemForm> {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          if (widget.item == null) ...[
+            OutlinedButton.icon(
+              onPressed: provider.isBusy ? null : _scanBarcode,
+              icon: const Icon(Icons.qr_code_scanner),
+              label: Text(
+                _barcode == null
+                    ? 'Escanear código de barras'
+                    : 'Código: $_barcode (escanear outro)',
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
           _NameField(
             controller: _name,
             focusNode: _nameFocus,

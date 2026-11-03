@@ -15,6 +15,7 @@ import '../screens/items/item_list_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/recipes/recipe_detail_screen.dart';
 import '../screens/recipes/recipes_screen.dart';
+import '../screens/scanner/barcode_scan_screen.dart';
 import '../widgets/main_shell.dart';
 
 const _authPaths = {'/login', '/register', '/forgot-password'};
@@ -33,8 +34,12 @@ GoRouter createRouter(AuthProvider auth, HouseholdProvider household) {
       if (!auth.isReady) return path == '/splash' ? null : '/splash';
       if (!auth.isLoggedIn) return _authPaths.contains(path) ? null : '/login';
       if (!household.isReady) return path == '/splash' ? null : '/splash';
-      if (!household.hasHousehold) return path == _setupPath ? null : _setupPath;
-      if (_authPaths.contains(path) || path == '/splash' || path == _setupPath) {
+      if (!household.hasHousehold) {
+        return path == _setupPath ? null : _setupPath;
+      }
+      if (_authPaths.contains(path) ||
+          path == '/splash' ||
+          path == _setupPath) {
         return '/home';
       }
       return null;
@@ -60,6 +65,7 @@ GoRouter createRouter(AuthProvider auth, HouseholdProvider household) {
       ),
       GoRoute(path: '/household', builder: (_, _) => const HouseholdScreen()),
       GoRoute(path: '/items/new', builder: (_, _) => const ItemFormScreen()),
+      GoRoute(path: '/scanner', builder: (_, _) => const BarcodeScanScreen()),
       GoRoute(
         path: '/items/:id/edit',
         builder: (_, state) =>
