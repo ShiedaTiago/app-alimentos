@@ -27,7 +27,7 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 
 ## Fase 3 — Alimentos (11–15/11)  ⭐ exigência da professora
 - [x] Model `FoodItem` + enums + `expiry.dart` com testes (RN01)
-- [ ] `ItemService` (stream de ativos, criar, editar, excluir, consumir/descartar)
+- [x] `ItemService` (stream de ativos, criar, editar, excluir, consumir/descartar)
 - [ ] Formulário com validação e date picker pt-BR
 - [ ] Lista ordenada por validade com `ExpiryBadge`, filtros por local/status, busca
 - [ ] Home com resumo (vencidos / vencendo / total) e "consuma primeiro"
