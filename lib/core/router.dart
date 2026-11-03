@@ -1,26 +1,37 @@
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 
 import '../providers/auth_provider.dart';
+import '../providers/household_provider.dart';
 import '../screens/auth/forgot_password_screen.dart';
 import '../screens/auth/login_screen.dart';
 import '../screens/auth/register_screen.dart';
 import '../screens/auth/splash_screen.dart';
 import '../screens/home/home_screen.dart';
+import '../screens/household/household_screen.dart';
+import '../screens/household/household_setup_screen.dart';
 import '../screens/profile/profile_screen.dart';
 
 const _authPaths = {'/login', '/register', '/forgot-password'};
+const _setupPath = '/household/setup';
 
 /// Rotas do app. O `redirect` manda o usuário para a tela certa conforme o
-/// estado de login (sessão persistente: reabrir o app logado vai direto à Home).
-GoRouter createRouter(AuthProvider auth) {
+/// estado de login e de casa (sessão persistente: reabrir o app logado vai
+/// direto à Home).
+GoRouter createRouter(AuthProvider auth, HouseholdProvider household) {
   return GoRouter(
     initialLocation: '/splash',
-    refreshListenable: auth,
+    // Reavalia o redirect quando o login OU a casa mudam.
+    refreshListenable: Listenable.merge([auth, household]),
     redirect: (context, state) {
       final path = state.matchedLocation;
       if (!auth.isReady) return path == '/splash' ? null : '/splash';
       if (!auth.isLoggedIn) return _authPaths.contains(path) ? null : '/login';
-      if (_authPaths.contains(path) || path == '/splash') return '/home';
+      if (!household.isReady) return path == '/splash' ? null : '/splash';
+      if (!household.hasHousehold) return path == _setupPath ? null : _setupPath;
+      if (_authPaths.contains(path) || path == '/splash' || path == _setupPath) {
+        return '/home';
+      }
       return null;
     },
     routes: [
@@ -33,6 +44,11 @@ GoRouter createRouter(AuthProvider auth) {
       ),
       GoRoute(path: '/home', builder: (_, _) => const HomeScreen()),
       GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
+      GoRoute(path: '/household', builder: (_, _) => const HouseholdScreen()),
+      GoRoute(
+        path: _setupPath,
+        builder: (_, _) => const HouseholdSetupScreen(),
+      ),
     ],
   );
 }

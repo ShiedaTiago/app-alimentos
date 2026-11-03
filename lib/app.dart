@@ -4,17 +4,27 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/auth_provider.dart';
+import 'providers/household_provider.dart';
 
 class App extends StatelessWidget {
-  const App({super.key, required this.authProvider, required this.router});
+  const App({
+    super.key,
+    required this.authProvider,
+    required this.householdProvider,
+    required this.router,
+  });
 
   final AuthProvider authProvider;
+  final HouseholdProvider householdProvider;
   final GoRouter router;
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: authProvider,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: authProvider),
+        ChangeNotifierProvider.value(value: householdProvider),
+      ],
       child: MaterialApp.router(
         title: 'Gestão de Alimentos',
         theme: ThemeData(colorSchemeSeed: Colors.green, useMaterial3: true),

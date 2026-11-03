@@ -16,6 +16,11 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Início'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.home),
+            tooltip: 'Minha casa',
+            onPressed: () => context.push('/household'),
+          ),
+          IconButton(
             icon: const Icon(Icons.person),
             tooltip: 'Perfil',
             onPressed: () => context.push('/profile'),

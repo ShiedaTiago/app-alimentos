@@ -19,10 +19,10 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [ ] [D] Verificação de e-mail
 
 ## Fase 2 — Casa (08–10/11)
-- [ ] Criar casa (gera código de convite + 3 locais padrão)
-- [ ] Entrar com código
-- [ ] Redirect: logado sem casa → setup
-- [ ] Tela da casa (nome, código com copiar, membros)
+- [x] Criar casa (gera código de convite + 3 locais padrão)
+- [x] Entrar com código
+- [x] Redirect: logado sem casa → setup
+- [x] Tela da casa (nome, código com copiar, membros)
 - [ ] `firestore.rules` publicadas e testadas no Rules Playground
 
 ## Fase 3 — Alimentos (11–15/11)  ⭐ exigência da professora

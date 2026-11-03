@@ -13,6 +13,27 @@ void main() {
     });
   });
 
+  group('validateHouseholdName', () {
+    test('rejeita vazio e muito curto', () {
+      expect(validateHouseholdName(''), isNotNull);
+      expect(validateHouseholdName(' A '), isNotNull);
+    });
+    test('aceita nome válido', () {
+      expect(validateHouseholdName('Casa do Tiago'), isNull);
+    });
+  });
+
+  group('validateInviteCodeInput', () {
+    test('rejeita vazio, tamanho errado e caracteres ambíguos', () {
+      expect(validateInviteCodeInput(null), isNotNull);
+      expect(validateInviteCodeInput('ABC'), isNotNull);
+      expect(validateInviteCodeInput('ABCD10'), isNotNull);
+    });
+    test('aceita código válido, mesmo minúsculo e com espaços', () {
+      expect(validateInviteCodeInput(' abcd23 '), isNull);
+    });
+  });
+
   group('validateEmail', () {
     test('rejeita vazio e formatos inválidos', () {
       expect(validateEmail(''), isNotNull);
