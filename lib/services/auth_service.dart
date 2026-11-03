@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../core/app_exception.dart';
 import '../core/auth_errors.dart';
@@ -12,6 +13,8 @@ class AuthService {
 
   final UserService _userService;
   final FirebaseAuth _auth;
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  bool _googleInitialized = false;
 
   Stream<User?> get authChanges => _auth.authStateChanges();
 
@@ -49,11 +52,48 @@ class AuthService {
     });
   }
 
+  /// Abre o seletor de contas do Google. Se o usuário cancelar, não faz nada.
+  Future<void> signInWithGoogle() {
+    return _guard(() async {
+      final GoogleSignInAccount account;
+      try {
+        await _ensureGoogleInitialized();
+        account = await _googleSignIn.authenticate();
+      } on GoogleSignInException catch (error) {
+        if (error.code == GoogleSignInExceptionCode.canceled) return;
+        throw const AppException('Não foi possível entrar com o Google.');
+      }
+
+      // O Google devolve um idToken; o Firebase troca por uma sessão própria.
+      final credential = GoogleAuthProvider.credential(
+        idToken: account.authentication.idToken,
+      );
+      final result = await _auth.signInWithCredential(credential);
+      final user = result.user!;
+      await _userService.createIfMissing(
+        uid: user.uid,
+        name: user.displayName ?? account.displayName ?? account.email,
+        email: user.email ?? account.email,
+      );
+    });
+  }
+
   Future<void> sendPasswordReset(String email) {
     return _guard(() => _auth.sendPasswordResetEmail(email: email.trim()));
   }
 
-  Future<void> signOut() => _auth.signOut();
+  // Sai também do Google; senão o próximo login entra direto na mesma conta.
+  Future<void> signOut() async {
+    if (_googleInitialized) await _googleSignIn.signOut();
+    await _auth.signOut();
+  }
+
+  // Na versão 7 do google_sign_in, initialize() precisa rodar uma única vez.
+  Future<void> _ensureGoogleInitialized() async {
+    if (_googleInitialized) return;
+    await _googleSignIn.initialize();
+    _googleInitialized = true;
+  }
 
   // FirebaseAuthException e erros do Firestore herdam de FirebaseException.
   Future<void> _guard(Future<void> Function() action) async {

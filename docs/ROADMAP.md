@@ -14,7 +14,7 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [x] `validators.dart` + testes
 - [x] Telas: login, cadastro, esqueci a senha (com validação de formulário)
 - [x] `AuthService` com e-mail/senha e tradução de erros para pt-BR
-- [ ] Login com Google (cria `users/{uid}` no primeiro acesso)
+- [x] Login com Google (cria `users/{uid}` no primeiro acesso)
 - [x] `go_router` com redirect por estado de login; sessão persistente; logout
 - [ ] [D] Verificação de e-mail
 

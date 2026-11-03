@@ -75,6 +75,14 @@ class _LoginScreenState extends State<LoginScreen> {
               isLoading: auth.isBusy,
               onPressed: _submit,
             ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: auth.isBusy
+                  ? null
+                  : () => context.read<AuthProvider>().signInWithGoogle(),
+              icon: const Icon(Icons.login),
+              label: const Text('Entrar com Google'),
+            ),
             TextButton(
               onPressed: () => context.push('/forgot-password'),
               child: const Text('Esqueci minha senha'),

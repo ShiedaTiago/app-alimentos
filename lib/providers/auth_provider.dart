@@ -37,6 +37,8 @@ class AuthProvider extends ChangeNotifier {
     return _run(() => _service.signIn(email: email, password: password));
   }
 
+  Future<bool> signInWithGoogle() => _run(_service.signInWithGoogle);
+
   Future<bool> register(String name, String email, String password) {
     return _run(
       () => _service.register(name: name, email: email, password: password),
