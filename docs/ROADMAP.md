@@ -36,7 +36,7 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 ## Fase 4 — Receitas (16–18/11)
 - [x] `assets/recipes.json` com ~20 receitas
 - [x] `RecipeService.suggest(items)` + testes
-- [ ] Lista de sugestões (tem / falta) e detalhe
+- [x] Lista de sugestões (tem / falta) e detalhe
 
 ## Fase 5 — Extras (19–20/11)  — só se as fases 1–4 estiverem prontas
 - [ ] [D] Leitor de código de barras + Open Food Facts

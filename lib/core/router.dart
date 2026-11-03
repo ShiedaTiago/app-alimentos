@@ -13,6 +13,7 @@ import '../screens/household/household_setup_screen.dart';
 import '../screens/items/item_form_screen.dart';
 import '../screens/items/item_list_screen.dart';
 import '../screens/profile/profile_screen.dart';
+import '../screens/recipes/recipe_detail_screen.dart';
 import '../screens/recipes/recipes_screen.dart';
 import '../widgets/main_shell.dart';
 
@@ -63,6 +64,11 @@ GoRouter createRouter(AuthProvider auth, HouseholdProvider household) {
         path: '/items/:id/edit',
         builder: (_, state) =>
             ItemFormScreen(itemId: state.pathParameters['id']),
+      ),
+      GoRoute(
+        path: '/recipes/:id',
+        builder: (_, state) =>
+            RecipeDetailScreen(recipeId: state.pathParameters['id']!),
       ),
       GoRoute(
         path: _setupPath,
