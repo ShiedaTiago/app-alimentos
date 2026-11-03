@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../providers/auth_provider.dart';
@@ -13,6 +13,8 @@ import '../screens/household/household_setup_screen.dart';
 import '../screens/items/item_form_screen.dart';
 import '../screens/items/item_list_screen.dart';
 import '../screens/profile/profile_screen.dart';
+import '../screens/recipes/recipes_screen.dart';
+import '../widgets/main_shell.dart';
 
 const _authPaths = {'/login', '/register', '/forgot-password'};
 const _setupPath = '/household/setup';
@@ -44,10 +46,18 @@ GoRouter createRouter(AuthProvider auth, HouseholdProvider household) {
         path: '/forgot-password',
         builder: (_, _) => const ForgotPasswordScreen(),
       ),
-      GoRoute(path: '/home', builder: (_, _) => const HomeScreen()),
-      GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
+      // Abas com barra inferior. As telas fora daqui (formulário, casa) abrem
+      // por cima, em tela cheia.
+      StatefulShellRoute.indexedStack(
+        builder: (_, _, shell) => MainShell(shell: shell),
+        branches: [
+          _tab('/home', const HomeScreen()),
+          _tab('/items', const ItemListScreen()),
+          _tab('/recipes', const RecipesScreen()),
+          _tab('/profile', const ProfileScreen()),
+        ],
+      ),
       GoRoute(path: '/household', builder: (_, _) => const HouseholdScreen()),
-      GoRoute(path: '/items', builder: (_, _) => const ItemListScreen()),
       GoRoute(path: '/items/new', builder: (_, _) => const ItemFormScreen()),
       GoRoute(
         path: '/items/:id/edit',
@@ -61,3 +71,7 @@ GoRouter createRouter(AuthProvider auth, HouseholdProvider household) {
     ],
   );
 }
+
+StatefulShellBranch _tab(String path, Widget screen) => StatefulShellBranch(
+  routes: [GoRoute(path: path, builder: (_, _) => screen)],
+);

@@ -30,8 +30,8 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [x] `ItemService` (stream de ativos, criar, editar, excluir, consumir/descartar)
 - [x] Formulário com validação e date picker pt-BR
 - [x] Lista ordenada por validade com `ExpiryBadge`, filtros por local/status, busca
-- [ ] Home com resumo (vencidos / vencendo / total) e "consuma primeiro"
-- [ ] Bottom navigation (Início · Alimentos · Receitas · Perfil)
+- [x] Home com resumo (vencidos / vencendo / total) e "consuma primeiro"
+- [x] Bottom navigation (Início · Alimentos · Receitas · Perfil)
 
 ## Fase 4 — Receitas (16–18/11)
 - [x] `assets/recipes.json` com ~20 receitas
