@@ -62,7 +62,7 @@ lib/
     auth/        login_screen, register_screen, forgot_password_screen, verify_email_screen
     household/   household_setup_screen, household_screen
     home/        home_screen
-    items/       item_list_screen, item_form_screen, item_detail_screen
+    items/       item_list_screen, item_form_screen
     scanner/     barcode_scan_screen [D]
     recipes/     recipe_list_screen, recipe_detail_screen
     profile/     profile_screen
@@ -82,12 +82,10 @@ firestore.rules
 não logado ──────────────► /login  (↔ /register, /forgot-password)
 logado, sem casa ────────► /household/setup  (criar ou entrar com código)
 logado, com casa ────────► /home
-                             ├─ /items  → /items/new, /items/:id
-                             ├─ /recipes → /recipes/:id
-                             ├─ /household
-                             └─ /profile
+abas (StatefulShellRoute) ─► /home · /items · /recipes · /profile
+tela cheia, por cima ──────► /items/new, /items/:id/edit, /recipes/:id, /household
 ```
-Navegação principal na Home: `NavigationBar` com Início · Alimentos · Receitas · Perfil.
+Navegação principal: `NavigationBar` com Início · Alimentos · Receitas · Perfil (`widgets/main_shell.dart`). Tocar num alimento abre direto a edição (não há tela de detalhe).
 
 ## Tratamento de erros (FirebaseAuthException → pt-BR)
 | Código | Mensagem |
