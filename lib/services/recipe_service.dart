@@ -63,10 +63,12 @@ class RecipeService {
     return suggestions;
   }
 
-  // Nome do alimento (sem acento/maiúsculas) contém alguma palavra-chave.
+  // Nome do alimento (sem acento/maiúsculas) contém alguma palavra-chave
+  // como palavra inteira e nenhuma expressão de exclusão.
   bool _matches(RecipeIngredient ingredient, FoodItem item) {
     final name = normalizeText(item.name);
-    return ingredient.keywords.any((keyword) => name.contains(keyword));
+    if (ingredient.excludes.any((e) => containsWords(name, e))) return false;
+    return ingredient.keywords.any((keyword) => containsWords(name, keyword));
   }
 
   bool _isExpiringSoon(FoodItem item, DateTime? today) {

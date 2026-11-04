@@ -37,3 +37,12 @@ String normalizeText(String text) {
 String formatQuantity(double value) => value == value.roundToDouble()
     ? value.toInt().toString()
     : value.toString().replaceAll('.', ',');
+
+/// `true` se [phrase] aparece em [text] como palavra(s) inteira(s).
+/// Ambos devem estar normalizados (ver [normalizeText]).
+/// "leite de coco" contém "leite", mas "ovomaltine" não contém "ovo".
+bool containsWords(String text, String phrase) {
+  if (phrase.isEmpty) return false;
+  return RegExp('(^|[^a-z0-9])${RegExp.escape(phrase)}(\$|[^a-z0-9])')
+      .hasMatch(text);
+}

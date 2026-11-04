@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/utils/date_utils.dart';
 import '../../core/utils/expiry.dart';
+import '../../core/utils/food_catalog.dart';
 import '../../core/utils/item_history.dart';
 import '../../core/utils/text_utils.dart';
 import '../../core/utils/validators.dart';
@@ -166,8 +167,38 @@ class _ItemFormState extends State<_ItemForm> {
     super.dispose();
   }
 
+  /// Se o nome parece ter erro de digitação, pergunta se o usuário quer corrigir.
+  Future<void> _offerNameCorrection() async {
+    final extra = _history.expand((i) => i.name.split(RegExp(r'\s+')));
+    final correction = suggestCorrection(_name.text, extraWords: extra);
+    if (correction == null) return;
+    final useSuggestion = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Você quis dizer...?'),
+        content: Text(
+          '"${_name.text.trim()}" parece ter um erro de digitação. '
+          'Usar "${correction.suggested}"? Assim ele é reconhecido nas receitas.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Manter como digitei'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text('Usar ${correction.suggested}'),
+          ),
+        ],
+      ),
+    );
+    if (useSuggestion == true) _name.text = correction.suggested;
+  }
+
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
+    await _offerNameCorrection();
+    if (!mounted) return;
     final now = DateTime.now();
     final notes = _notes.text.trim();
     final original = widget.item;

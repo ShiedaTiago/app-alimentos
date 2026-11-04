@@ -3,17 +3,23 @@ class RecipeIngredient {
     required this.name,
     required this.keywords,
     this.optional = false,
+    this.excludes = const [],
   });
 
   final String name;
   final List<String> keywords; // sem acento e em minúsculas
   final bool optional;
 
+  /// Expressões que descartam o alimento mesmo com a palavra-chave
+  /// (ex.: "coco" para leite). Sem acento e em minúsculas.
+  final List<String> excludes;
+
   factory RecipeIngredient.fromMap(Map<String, dynamic> map) {
     return RecipeIngredient(
       name: map['name'] as String,
       keywords: List<String>.from(map['keywords'] as List),
       optional: map['optional'] as bool? ?? false,
+      excludes: List<String>.from(map['excludes'] as List? ?? const []),
     );
   }
 }
