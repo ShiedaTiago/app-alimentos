@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/app_exception.dart';
 import '../../models/app_user.dart';
 import '../../models/household.dart';
 import '../../providers/household_provider.dart';
@@ -102,7 +103,18 @@ class _MemberListState extends State<_MemberList> {
           );
         }
         if (snapshot.hasError) {
-          return ListTile(title: Text(snapshot.error.toString()));
+          final error = snapshot.error;
+          return ListTile(
+            leading: Icon(
+              Icons.error_outline,
+              color: Theme.of(context).colorScheme.error,
+            ),
+            title: Text(
+              error is AppException
+                  ? error.message
+                  : 'Não foi possível carregar os membros.',
+            ),
+          );
         }
         final members = snapshot.data!;
         if (members.isEmpty) {

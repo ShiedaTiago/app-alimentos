@@ -10,14 +10,21 @@
           "ovo",
           "ovos"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "ovo de pascoa"
+        ]
       },
       {
         "name": "tomate",
         "keywords": [
           "tomate"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "molho",
+          "extrato"
+        ]
       },
       {
         "name": "cebola",
@@ -31,7 +38,10 @@
         "keywords": [
           "queijo"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "pao de queijo"
+        ]
       }
     ],
     "steps": [
@@ -210,14 +220,21 @@
         "keywords": [
           "tomate"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "molho",
+          "extrato"
+        ]
       },
       {
         "name": "queijo",
         "keywords": [
           "queijo"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "pao de queijo"
+        ]
       }
     ],
     "steps": [
@@ -236,7 +253,12 @@
         "keywords": [
           "leite"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "coco",
+          "condensado",
+          "creme de leite"
+        ]
       },
       {
         "name": "ovo",
@@ -244,7 +266,10 @@
           "ovo",
           "ovos"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "ovo de pascoa"
+        ]
       },
       {
         "name": "farinha",
@@ -278,7 +303,12 @@
         "keywords": [
           "leite"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "coco",
+          "condensado",
+          "creme de leite"
+        ]
       }
     ],
     "steps": [
@@ -311,7 +341,11 @@
         "keywords": [
           "tomate"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "molho",
+          "extrato"
+        ]
       }
     ],
     "steps": [
@@ -399,14 +433,20 @@
         "keywords": [
           "pao"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "pao de queijo"
+        ]
       },
       {
         "name": "queijo",
         "keywords": [
           "queijo"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "pao de queijo"
+        ]
       },
       {
         "name": "presunto",
@@ -474,21 +514,32 @@
           "ovo",
           "ovos"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "ovo de pascoa"
+        ]
       },
       {
         "name": "leite",
         "keywords": [
           "leite"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "coco",
+          "condensado",
+          "creme de leite"
+        ]
       },
       {
         "name": "queijo",
         "keywords": [
           "queijo"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "pao de queijo"
+        ]
       }
     ],
     "steps": [
@@ -514,7 +565,12 @@
         "keywords": [
           "leite"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "coco",
+          "condensado",
+          "creme de leite"
+        ]
       },
       {
         "name": "manteiga",
@@ -550,14 +606,21 @@
         "keywords": [
           "tomate"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "molho",
+          "extrato"
+        ]
       },
       {
         "name": "queijo",
         "keywords": [
           "queijo"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "pao de queijo"
+        ]
       },
       {
         "name": "carne moída",
@@ -618,21 +681,31 @@
         "keywords": [
           "pao"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "pao de queijo"
+        ]
       },
       {
         "name": "queijo",
         "keywords": [
           "queijo"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "pao de queijo"
+        ]
       },
       {
         "name": "tomate",
         "keywords": [
           "tomate"
         ],
-        "optional": true
+        "optional": true,
+        "excludes": [
+          "molho",
+          "extrato"
+        ]
       },
       {
         "name": "alface",
@@ -713,14 +786,22 @@
           "ovo",
           "ovos"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "ovo de pascoa"
+        ]
       },
       {
         "name": "leite",
         "keywords": [
           "leite"
         ],
-        "optional": false
+        "optional": false,
+        "excludes": [
+          "coco",
+          "condensado",
+          "creme de leite"
+        ]
       },
       {
         "name": "açúcar",

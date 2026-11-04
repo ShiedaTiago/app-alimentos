@@ -107,4 +107,44 @@ void main() {
   test('sem alimentos, sem sugestões', () {
     expect(service.suggest([], today: today), isEmpty);
   });
+
+  group('reconhecimento por palavra inteira', () {
+    const milk = RecipeIngredient(
+      name: 'leite',
+      keywords: ['leite'],
+      excludes: ['coco', 'condensado', 'creme de leite'],
+    );
+    const shake = Recipe(
+      id: 'shake',
+      title: 'Shake',
+      minutes: 5,
+      ingredients: [milk],
+      steps: ['Bata.'],
+    );
+    final milkService = RecipeService([shake, omelet]);
+
+    bool hasMilk(String name) => milkService
+        .suggest([buildItem(name: name, expiresAt: inDays(30))], today: today)
+        .any((s) => s.recipe.id == 'shake');
+
+    test('aceita variações do mesmo alimento', () {
+      expect(hasMilk('Leite'), isTrue);
+      expect(hasMilk('Leite integral'), isTrue);
+      expect(hasMilk('LEITE desnatado'), isTrue);
+    });
+
+    test('não confunde produtos diferentes', () {
+      expect(hasMilk('Leite de coco'), isFalse);
+      expect(hasMilk('Leite condensado'), isFalse);
+      expect(hasMilk('Creme de leite'), isFalse);
+    });
+
+    test('palavra-chave só vale como palavra inteira', () {
+      final result = service.suggest(
+        [buildItem(name: 'Ovomaltine', expiresAt: inDays(30))],
+        today: today,
+      );
+      expect(result, isEmpty);
+    });
+  });
 }

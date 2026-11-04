@@ -60,18 +60,30 @@ class _SuggestionCard extends StatelessWidget {
         title: Text(recipe.title),
         subtitle: Text(
           'Tem ${suggestion.haveIngredients.length} · '
-          '${missing == 0 ? 'Não falta nada' : 'Falta $missing'} · '
+          '${missing == 0 ? '' : 'Falta $missing · '}'
           '${recipe.minutes} min',
         ),
-        trailing: suggestion.expiringCount > 0
-            ? Tooltip(
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (missing == 0)
+              Tooltip(
+                message: 'Você tem todos os ingredientes',
+                child: Icon(
+                  Icons.check_circle,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+            if (suggestion.expiringCount > 0)
+              Tooltip(
                 message: 'Usa alimentos vencendo',
                 child: Icon(
                   Icons.schedule,
                   color: Theme.of(context).colorScheme.error,
                 ),
-              )
-            : null,
+              ),
+          ],
+        ),
         onTap: () => context.push('/recipes/${recipe.id}'),
       ),
     );

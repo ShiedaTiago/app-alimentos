@@ -45,9 +45,9 @@ Marque `[x]` ao concluir. O Claude deve trabalhar **uma fase por vez**, na ordem
 - [x] [D] Simulador RFID (tela debug) — bom para mostrar a visão do TCC
 
 ## Fase 6 — Entrega (21–23/11)
-- [ ] `flutter analyze` limpo, `flutter test` passando
-- [ ] Revisar estados de carregando/vazio/erro em todas as telas
-- [ ] Ícone e nome do app
+- [x] `flutter analyze` limpo, `flutter test` passando
+- [x] Revisar estados de carregando/vazio/erro em todas as telas
+- [x] Ícone e nome do app
 - [ ] Contas de demonstração: **2 casas diferentes** (ex.: Casa A com 2 usuários, Casa B com 1) com alimentos distintos — prova o isolamento entre contas
 - [ ] Gerar APK: `flutter build apk --release`
 - [ ] Roteiro da apresentação (login → Google → casa → cadastro → validade → receitas → trocar de conta)
